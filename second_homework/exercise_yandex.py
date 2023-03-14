@@ -1,20 +1,9 @@
-from pprint import pprint
-
 import requests
 
 
 class YaUploader:
     def __init__(self, tokens: str):
         self.token = tokens
-
-    def get_files_list(self):
-        files_url = "https://cloud-api.yandex.net/v1/disk/resources/files   "
-        headers = {
-            'Content-type': 'application/json',
-            'Authorization': 'OAuth {}'.format(self.token)
-        }
-        response = requests.get(files_url, headers=headers)
-        return response.json()
 
     def _get_upload_link(self, disk_file_path):
         upload_url = "https://cloud-api.yandex.net/v1/disk/resources/upload"
@@ -39,4 +28,3 @@ if __name__ == '__main__':
     token = "y0_AgAAAAAstFelAADLWwAAAADecfXZMTvrP2p1S2Scr-zqJOfHrfvRqZo"
     ya = YaUploader(tokens=token)
     ya.upload_file_to_disk("learning_exercise/homework.txt", 'file_for_upload.txt')
-
